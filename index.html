@@ -1,0 +1,74 @@
+<nav class="glossaryNav">
+   <ul class="azlater">
+      <li class=""> <a href="#a-tests" class="active"> A </a> </li>
+      <li class=""> <a href="#b-tests"> B </a> </li>
+      <li class=""> <a href="#c-tests"> C </a> </li>
+      <li class=""> <a href="#d-tests"> D </a> </li>
+      <li class=""> <a href="#e-tests"> E </a> </li>
+      <li class=""> <a href="#f-tests"> F </a> </li>
+      <li class=""> <a href="#g-tests"> G </a> </li>
+      <li class=""> <a href="#h-tests"> H </a> </li>
+      <li class=""> <a href="#i-tests"> I </a> </li>
+      <li class=""> <a href="#j-tests"> J </a> </li>
+      <li class=""> <a href="#k-tests"> K </a> </li>
+      <li class=""> <a href="#l-tests"> L </a> </li>
+      <li class=""> <a href="#m-tests"> M </a> </li>
+      <li class=""> <a href="#n-tests"> N </a> </li>
+      <li class=""> <a href="#o-tests"> O </a> </li>
+      <li class=""> <a href="#p-tests"> P </a> </li>
+      <li class=""> <a href="#q-tests"> Q </a> </li>
+      <li class=""> <a href="#r-tests"> R </a> </li>
+      <li class=""> <a href="#s-tests"> S </a> </li>
+      <li class=""> <a href="#t-tests"> T </a> </li>
+      <li class=""> <a href="#u-tests"> U </a> </li>
+      <li class=""> <a href="#v-tests"> V </a> </li>
+      <li class=""> <a href="#w-tests"> W </a> </li>
+      <li class=""> <a href="#x-tests">X</a> </li>
+      <li class=""> <a href="#y-tests"> Y </a> </li>
+      <li class=""> <a href="#z-tests">Z</a> </li>
+   </ul>
+</nav>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+jQuery(document).ready(function () {
+    jQuery(document).on("scroll", onScroll);
+    
+    //smoothscroll
+    jQuery('li a').on('click', function (e) {
+        e.preventDefault();
+        jQuery(document).off("scroll");
+        
+        jQuery('a').each(function () {
+            jQuery(this).removeClass('active');
+        })
+        jQuery(this).addClass('active');
+      
+        var target = this.hash,
+            menu = target;
+        jQuerytarget = jQuery(target);
+        jQuery('html, body').stop().animate({
+            'scrollTop': jQuerytarget.offset().top+2
+        }, 500, 'swing', function () {
+            window.location.hash = target;
+            jQuery(document).on("scroll", onScroll);
+        });
+    });
+});
+
+function onScroll(event){
+    var scrollPos = jQuery(document).scrollTop();
+    jQuery('.glossaryNav a').each(function () {
+        var currLink = jQuery(this);
+        var refElement = jQuery(currLink.attr("href"));
+        if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
+            jQuery('.glossaryNav ul li a').removeClass("active");
+            currLink.addClass("active");
+        }
+        else{
+            currLink.removeClass("active");
+        }
+    });
+}
+
+</script>
